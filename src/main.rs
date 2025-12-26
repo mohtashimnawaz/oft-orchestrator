@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand};
 use anyhow::Result;
-use dotenv::dotenv; // <--- Import this
+use dotenv::dotenv;
 use std::path::Path;
 
 mod evm_ops;
@@ -31,7 +31,7 @@ enum Commands {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    // 1. Load the .env file from the 'evm' directory
+    // Load environment variables from the EVM folder
     let env_path = Path::new("evm/.env");
     if env_path.exists() {
         dotenv::from_path(env_path).ok();
@@ -43,18 +43,18 @@ async fn main() -> Result<()> {
 
     match &cli.command {
         Commands::Deploy { mint, evm_chain_id, lz_endpoint, target_eid } => {
-            // 2. Setup Solana Side
+            // 1. Setup Solana Side
             let sol_oft_pda = solana_ops::init_adapter(mint).await?;
             
-            // 3. Setup EVM Side
+            // 2. Setup EVM Side
             let evm_oft_addr = evm_ops::deploy_evm_oft(*evm_chain_id, lz_endpoint).await?;
             println!("📝 Captured EVM Address: {}", evm_oft_addr);
 
-            // 4. Wire: Solana -> EVM
+            // 3. Wire: Solana -> EVM
             let evm_bytes32 = utils::pad_evm_address(&evm_oft_addr);
             solana_ops::set_peer_solana(sol_oft_pda, *target_eid, evm_bytes32).await?;
 
-            // 5. Wire: EVM -> Solana
+            // 4. Wire: EVM -> Solana
             let sol_bytes32_hex = utils::pubkey_to_hex32(&sol_oft_pda);
             evm_ops::set_peer_evm(&evm_oft_addr, *target_eid, sol_bytes32_hex).await?;
             

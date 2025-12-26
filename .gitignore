@@ -87,3 +87,10 @@ __pycache__/
 .local.env
 
 # End of .gitignore
+
+/target
+/evm/out
+/evm/cache
+/evm/broadcast
+.env
+evm/.env

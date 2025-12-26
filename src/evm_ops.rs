@@ -5,7 +5,6 @@ use crate::utils;
 pub async fn deploy_evm_oft(chain_id: u32, endpoint_address: &str) -> Result<String> {
     println!("🛠️  Spawning Foundry to deploy OFT on chain ID {}...", chain_id);
 
-    // Use a public RPC for Sepolia (or your target chain)
     let rpc_url = "https://ethereum-sepolia-rpc.publicnode.com"; 
 
     let output = Command::new("forge")
@@ -24,7 +23,6 @@ pub async fn deploy_evm_oft(chain_id: u32, endpoint_address: &str) -> Result<Str
     let stdout = String::from_utf8(output.stdout)?;
     let stderr = String::from_utf8(output.stderr)?;
 
-    // Debug logging to help you see what's happening
     println!("--- FORGE STDOUT ---\n{}", stdout);
     if !stderr.is_empty() {
         println!("--- FORGE STDERR ---\n{}", stderr);
@@ -40,12 +38,11 @@ pub async fn deploy_evm_oft(chain_id: u32, endpoint_address: &str) -> Result<Str
     Ok(address)
 }
 
-// In src/evm_ops.rs
-
 pub async fn set_peer_evm(oft_addr: &str, target_eid: u32, peer_bytes: String) -> Result<()> {
     println!("🔗 Wiring EVM -> Solana...");
+    println!("(Simulated) Executing: cast send {} setPeer({}, {})", oft_addr, target_eid, peer_bytes);
     
-    // This executes the 'cast' command using the private key from your .env
+   
     Command::new("cast")
        .arg("send")
        .arg(oft_addr)
@@ -53,8 +50,8 @@ pub async fn set_peer_evm(oft_addr: &str, target_eid: u32, peer_bytes: String) -
        .arg(target_eid.to_string())
        .arg(peer_bytes)
        .arg("--rpc-url").arg("https://ethereum-sepolia-rpc.publicnode.com")
-       .arg("--private-key").arg(std::env::var("PRIVATE_KEY")?) // This will now work!
+       .arg("--private-key").arg(std::env::var("PRIVATE_KEY")?)
        .output()?;
-
+    
     Ok(())
 }

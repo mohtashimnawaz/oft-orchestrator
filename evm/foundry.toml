@@ -3,14 +3,9 @@ src = "src"
 out = "out"
 libs = ["lib"]
 remappings = [
-    # Map the OFT logic to the devtools package
     "@layerzerolabs/oft-evm/=lib/devtools/packages/oft-evm/",
     "@layerzerolabs/oapp-evm/=lib/devtools/packages/oapp-evm/",
-    
-    # Map the core protocol to the LayerZero-v2 package
     "@layerzerolabs/lz-evm-protocol-v2/=lib/LayerZero-v2/packages/layerzero-v2/evm/protocol/",
     "@layerzerolabs/lz-evm-messagelib-v2/=lib/LayerZero-v2/packages/layerzero-v2/evm/messagelib/",
-    
-    # Map OpenZeppelin
     "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/"
 ]
