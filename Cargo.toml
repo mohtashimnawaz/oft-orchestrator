@@ -1,0 +1,18 @@
+[package]
+name = "oft-orchestrator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+tokio = { version = "1.0", features = ["full"] }
+solana-sdk = "1.18"
+solana-client = "1.18"
+anchor-client = "0.29.0"
+solana-program = "1.18"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+hex = "0.4"
+shellexpand = "3.0"
+anyhow = "1.0"
+dotenv = "0.15"
