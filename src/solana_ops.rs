@@ -12,9 +12,7 @@ use std::str::FromStr;
 use anyhow::{Result, Context};
 
 // ✅ CONFIGURATION: Your deployed Anchor Program ID
-const LZ_PROGRAM_ID: &str = "3Hu6qc4CdKxzrXULk1jvmLUUoTpRp6mh2bebSDKJJQdy"; 
-
-// ------------------------------------------------------------------
+const LZ_PROGRAM_ID: &str = "FX9LD6JPbSim1h7m7pJxKXdCB9SUL4SMbdyWnwtHB6LQ";// ------------------------------------------------------------------
 // DATA STRUCTURES
 // ------------------------------------------------------------------
 
