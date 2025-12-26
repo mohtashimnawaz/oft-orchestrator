@@ -1,0 +1,89 @@
+# .gitignore for oft-orchestrator
+# Ignore OS, editor, build artifacts, caches, and secrets
+
+# macOS
+.DS_Store
+
+# Editor directories
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# Backup / swap files
+*~
+*.swp
+
+# Environment / secrets
+.env
+.env.*
+.env.local
+.env.*.local
+.envrc
+secrets/
+*.secret
+*.key
+*.pem
+*.p12
+*.jks
+*.password
+
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+/dist/
+/build/
+/out/
+
+# Rust
+/target/
+**/target/
+Cargo.lock
+.cargo-checksum.json
+
+# Foundry / Solidity
+cache/
+out/
+artifacts/
+solidity-files-cache.json
+broadcast/
+**/run-*.json
+
+# Solana / Anchor
+dist/program/
+*.so
+
+# Logs and reports
+*.log
+logs/
+coverage/
+coverage.json
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+
+# Misc
+.vagrant/
+.terraform/
+
+# IDE / project files
+*.iml
+.idea/
+
+# Sensitive local config
+.local_env
+.local.env
+
+# End of .gitignore
